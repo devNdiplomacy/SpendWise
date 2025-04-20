@@ -47,7 +47,7 @@ fun App() {
                 var category by remember { mutableStateOf("") } // or another appropriate default
 
                 LaunchedEffect(Unit) {
-                    CoroutineScope(Dispatchers.Default).launch {
+                    coroutineScope.launch {
                         val db = getDataBase()
                         delay(2000)
                         db.getExpenseDao().insertExpense(ExpenseEntity(amount = params.amount, category = params.category))
