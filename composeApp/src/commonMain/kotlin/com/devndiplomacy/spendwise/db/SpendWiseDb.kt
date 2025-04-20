@@ -7,7 +7,14 @@ import androidx.room.*
 import com.devndiplomacy.spendwise.db.dao.ExpenseDao
 import com.devndiplomacy.spendwise.db.models.ExpenseEntity
 
-@Database(entities = [ExpenseEntity::class], version = 1)
+@Database(
+    entities = [ExpenseEntity::class],
+    version = 2,
+    autoMigrations = [
+        AutoMigration (from = 1, to = 2)
+    ],
+    exportSchema = true
+)
 @ConstructedBy(SpendWiseDatabaseConstructor::class)
 abstract class SpendWiseDb: RoomDatabase() {
 

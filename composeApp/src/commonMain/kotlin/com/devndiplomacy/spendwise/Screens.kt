@@ -1,12 +1,23 @@
 package com.devndiplomacy.spendwise
 
+import com.devndiplomacy.spendwise.db.models.ExpenseEntity
+import com.devndiplomacy.spendwise.screensUi.models.Expense
 import kotlinx.serialization.Serializable
 
 @Serializable
 sealed class Screen () {
 
      @Serializable
-     data object ExpenseAddScreen: Screen()
+     data object SpendWiseHomeScreen: Screen()
+
      @Serializable
-     data class ExpenseListScreen(val amount:String,val  category:String): Screen()
+     data object SpendWiseSplashScreen: Screen()
+
+     @Serializable
+     data object SpendWiseAddExpenseScreen: Screen()
+     
+     @Serializable
+     data object SpendWiseShowExpenseScreen: Screen()
+
 }
+

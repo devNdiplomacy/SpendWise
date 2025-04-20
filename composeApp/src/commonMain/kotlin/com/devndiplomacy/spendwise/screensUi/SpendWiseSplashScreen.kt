@@ -1,0 +1,117 @@
+package com.devndiplomacy.spendwise.screensUi
+
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Text
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.devndiplomacy.spendwise.Screen
+import com.devndiplomacy.spendwise.db.models.ExpenseEntity
+import com.devndiplomacy.spendwise.getDataBase
+import com.devndiplomacy.spendwise.getExpenses
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
+import kotlinx.coroutines.launch
+
+val spendwiseGreen = Color(0xFF438883)
+
+@Composable
+fun SpendWiseSplashScreen(modifier: Modifier = Modifier) {
+
+    val navController = rememberNavController()
+
+    NavHost(navController = navController, startDestination = Screen.SpendWiseSplashScreen){
+
+        composable<Screen.SpendWiseSplashScreen> {
+            Box(
+                modifier = modifier
+                    .fillMaxSize()
+                    .drawBehind {
+                        drawRect(spendwiseGreen)
+                    },
+                contentAlignment = Alignment.Center
+            ) {
+                // Logo text
+                Text(
+                    text = "SpendWise",
+                    color = Color.White,
+                    fontSize = 40.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+
+            LaunchedEffect(Unit) {
+
+                val expenseDao = getDataBase().getExpenseDao()
+                if (expenseDao.getAllExpenses().isEmpty()) {
+
+                    navController.navigate(Screen.SpendWiseAddExpenseScreen)
+                } else {
+
+                    navController.navigate(Screen.SpendWiseShowExpenseScreen)
+                }
+            }
+        }
+
+        composable<Screen.SpendWiseAddExpenseScreen> {
+
+            val coroutineScope = rememberCoroutineScope()
+            SpendWiseExpenseAddScreen(
+                onBack = {},
+                onSave = { amount, category->
+
+                    coroutineScope.launch {
+                        getDataBase().getExpenseDao().insertExpense(ExpenseEntity(amount = amount.toDouble(), category = category))
+                        navController.navigate(Screen.SpendWiseShowExpenseScreen)
+                    }
+                }
+            )
+        }
+
+        composable<Screen.SpendWiseShowExpenseScreen> {
+            SpendWiseShowExpenseScreen{
+                navController.navigate(Screen.SpendWiseAddExpenseScreen)
+            }
+        }
+
+
+    }
+
+}
+
+@Composable
+fun SpendWiseLoadingScreen(
+    modifier: Modifier = Modifier
+) {
+
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .drawBehind {
+                drawRect(spendwiseGreen)
+            },
+        contentAlignment = Alignment.Center
+    ) {
+        // Logo text
+        Text(
+            text = "SpendWise",
+            color = Color.White,
+            fontSize = 40.sp,
+            fontWeight = FontWeight.Bold
+        )
+    }
+}

@@ -13,7 +13,7 @@ fun getDataBase(
 ): SpendWiseDb {
 
     return dbBuilder
-        .fallbackToDestructiveMigrationOnDowngrade(false)
+        .fallbackToDestructiveMigrationOnDowngrade(true)
         .setDriver(BundledSQLiteDriver())
         .setQueryCoroutineContext(Dispatchers.IO)
         .build()

@@ -18,19 +18,23 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import com.devndiplomacy.spendwise.commonUi.SpendWiseBackground
 import com.devndiplomacy.spendwise.commonUi.SpendWiseButton
 import com.devndiplomacy.spendwise.commonUi.SpendWiseOutlineTextField
 import com.devndiplomacy.spendwise.commonUi.SpendWiseText
 
 @Composable
-fun ExpenseAddScreen(
+fun SpendWiseExpenseAddScreen(
     onBack: () -> Unit,
     onSave: (String, String) -> Unit
 ) {
-    ExpenseAddScreenContent(
-        onBack = onBack,
-        onSave = onSave
-    )
+    SpendWiseBackground {
+
+        ExpenseAddScreenContent(
+            onBack = onBack,
+            onSave = onSave
+        )
+    }
 }
 
 @Composable
