@@ -1,8 +1,7 @@
-package com.devndiplomacy.spendwise
+package com.devndiplomacy.spendwise.screensUi
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material.Text
 import androidx.compose.material.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment

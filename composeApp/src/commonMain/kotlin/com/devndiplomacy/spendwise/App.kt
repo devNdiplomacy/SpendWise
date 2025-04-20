@@ -1,26 +1,22 @@
 package com.devndiplomacy.spendwise
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.Button
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import kotlinx.serialization.Serializable
-import org.jetbrains.compose.resources.painterResource
+import com.devndiplomacy.spendwise.db.SpendWiseDatabaseConstructor
+import com.devndiplomacy.spendwise.db.dao.ExpenseDao
+import com.devndiplomacy.spendwise.db.models.ExpenseEntity
+import com.devndiplomacy.spendwise.screensUi.ExpenseAddScreen
+import com.devndiplomacy.spendwise.screensUi.ExpenseListScreen
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.ui.tooling.preview.Preview
-
-import spendwise.composeapp.generated.resources.Res
-import spendwise.composeapp.generated.resources.compose_multiplatform
 
 @Composable
 @Preview
@@ -45,10 +41,36 @@ fun App() {
             composable<Screen.ExpenseListScreen> {
 
                 val params = it.toRoute<Screen.ExpenseListScreen>()
-                ExpenseListScreen(
-                   amount =  params.amount,
-                   category = params.category
-                )
+                val coroutineScope = rememberCoroutineScope()
+                var isLoading by remember { mutableStateOf(true) }
+                var amount by remember { mutableStateOf("") } // or whatever default you need
+                var category by remember { mutableStateOf("") } // or another appropriate default
+
+                LaunchedEffect(Unit) {
+                    CoroutineScope(Dispatchers.Default).launch {
+                        val db = getDataBase()
+                        delay(2000)
+                        db.getExpenseDao().insertExpense(ExpenseEntity(amount = params.amount, category = params.category))
+                        val expense = db.getExpenseDao().getAllExpenses().firstOrNull()
+                        if (expense != null) {
+                            amount = expense.amount
+                            category = expense.category
+                        }
+                        isLoading = false
+                    }
+                }
+
+// Show loading state or content based on data availability
+                if (isLoading) {
+                    // Show loading indicator
+                    CircularProgressIndicator()
+                } else {
+                    // Show the screen with data only when ready
+                    ExpenseListScreen(
+                        amount = amount,
+                        category = category,
+                    )
+                }
             }
         }
     }
