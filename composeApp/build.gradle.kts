@@ -57,6 +57,7 @@ kotlin {
             implementation(libs.sqlite)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.datetime)
+            implementation(libs.material3)
         }
 
         desktopMain.dependencies {

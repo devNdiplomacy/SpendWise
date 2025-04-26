@@ -18,5 +18,5 @@ interface CategoryDao {
     suspend fun getAllCategory(): List<Category>
 
     @Query("SELECT * FROM category where name = :name")
-    suspend fun getCategoryByName(name: String): Category
+    suspend fun getCategoryByName(name: String): Category?
 }

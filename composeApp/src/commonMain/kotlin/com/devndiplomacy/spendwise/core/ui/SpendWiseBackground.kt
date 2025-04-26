@@ -17,7 +17,8 @@ import androidx.compose.ui.zIndex
 @Composable
 fun SpendWiseBackground(
     modifier: Modifier = Modifier,
-    content: @Composable () -> Unit = {}
+    greenPortion: Float = 0.3f,
+    content: @Composable () -> Unit = {},
 ) {
 
     val greenColor = Color(0xFF438883)
@@ -26,9 +27,8 @@ fun SpendWiseBackground(
     BoxWithConstraints(modifier = modifier.fillMaxSize()) {
         val width = constraints.maxWidth.toFloat()
         val height = constraints.maxHeight.toFloat()
-        val greenHeight = height * 0.3f  // Green takes 40% of screen height
+        val greenHeight = height * greenPortion
 
-        // White background for the entire screen
         Box(
             modifier = Modifier
                 .fillMaxSize()
