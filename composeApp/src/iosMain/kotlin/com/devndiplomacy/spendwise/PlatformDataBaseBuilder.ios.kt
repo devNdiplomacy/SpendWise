@@ -15,7 +15,7 @@ actual fun getPlatformDataBaseBuilder(): RoomDatabase.Builder<SpendWiseDb> {
 
 fun getDatabaseBuilder(): RoomDatabase.Builder<SpendWiseDb> {
 
-    val dbFilePath = documentDirectory() + "/expense.db"
+    val dbFilePath = documentDirectory() + "/$SPEND_WISE_DB"
     println("Db file path is $dbFilePath")
     return Room.databaseBuilder<SpendWiseDb>(
         name = dbFilePath,

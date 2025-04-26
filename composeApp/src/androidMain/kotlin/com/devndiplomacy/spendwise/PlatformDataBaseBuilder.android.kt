@@ -21,7 +21,7 @@ object GetContext{
 }
 actual fun getPlatformDataBaseBuilder(): RoomDatabase.Builder<SpendWiseDb> {
     val appContext = GetContext.getContext().applicationContext
-    val dbFile = appContext.getDatabasePath("expense.db")
+    val dbFile = appContext.getDatabasePath(SPEND_WISE_DB)
     return Room.databaseBuilder<SpendWiseDb>(
         context = appContext,
         name = dbFile.absolutePath

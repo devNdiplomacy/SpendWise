@@ -1,4 +1,4 @@
-package com.devndiplomacy.spendwise.screensUi
+package com.devndiplomacy.spendwise.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row

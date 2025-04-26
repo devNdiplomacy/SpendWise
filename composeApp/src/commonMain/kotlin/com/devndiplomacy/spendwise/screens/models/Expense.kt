@@ -1,4 +1,4 @@
-package com.devndiplomacy.spendwise.screensUi.models
+package com.devndiplomacy.spendwise.screens.models
 
 import kotlinx.serialization.Serializable
 

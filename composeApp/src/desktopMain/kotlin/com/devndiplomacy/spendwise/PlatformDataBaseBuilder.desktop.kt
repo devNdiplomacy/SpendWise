@@ -7,7 +7,7 @@ import java.io.File
 
 actual fun getPlatformDataBaseBuilder(): RoomDatabase.Builder<SpendWiseDb> {
 
-    val dbFile = File(System.getProperty("java.io.tmpdir"), "expense.db")
+    val dbFile = File(System.getProperty("java.io.tmpdir"), SPEND_WISE_DB)
     println("Db file path is ${dbFile.absolutePath}")
     return Room.databaseBuilder<SpendWiseDb>(
         name = dbFile.absolutePath,

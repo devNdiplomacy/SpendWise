@@ -26,7 +26,7 @@ fun SpendWiseBackground(
     BoxWithConstraints(modifier = modifier.fillMaxSize()) {
         val width = constraints.maxWidth.toFloat()
         val height = constraints.maxHeight.toFloat()
-        val greenHeight = height * 0.4f  // Green takes 40% of screen height
+        val greenHeight = height * 0.3f  // Green takes 40% of screen height
 
         // White background for the entire screen
         Box(

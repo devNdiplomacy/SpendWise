@@ -1,4 +1,4 @@
-package com.devndiplomacy.spendwise.screensUi
+package com.devndiplomacy.spendwise.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.sp
 import com.devndiplomacy.spendwise.commonUi.SpendWiseBackground
 import com.devndiplomacy.spendwise.getDataBase
 import com.devndiplomacy.spendwise.getExpenses
-import com.devndiplomacy.spendwise.screensUi.models.Expense
+import com.devndiplomacy.spendwise.screens.models.Expense
 import kotlinx.coroutines.launch
 
 @Composable
