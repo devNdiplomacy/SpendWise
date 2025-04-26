@@ -1,4 +1,4 @@
-package com.devndiplomacy.spendwise
+package com.devndiplomacy.spendwise.core.ui.components
 
 import kotlinx.serialization.Serializable
 

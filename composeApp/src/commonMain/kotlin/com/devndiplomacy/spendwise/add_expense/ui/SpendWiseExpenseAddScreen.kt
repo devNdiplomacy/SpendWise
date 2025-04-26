@@ -1,4 +1,4 @@
-package com.devndiplomacy.spendwise.screens
+package com.devndiplomacy.spendwise.add_expense.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,19 +18,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import com.devndiplomacy.spendwise.commonUi.SpendWiseBackground
-import com.devndiplomacy.spendwise.commonUi.SpendWiseButton
-import com.devndiplomacy.spendwise.commonUi.SpendWiseOutlineTextField
-import com.devndiplomacy.spendwise.commonUi.SpendWiseText
+import com.devndiplomacy.spendwise.core.ui.SpendWiseBackground
+import com.devndiplomacy.spendwise.core.ui.SpendWiseButton
+import com.devndiplomacy.spendwise.core.ui.SpendWiseOutlineTextField
+import com.devndiplomacy.spendwise.core.ui.SpendWiseText
 
 @Composable
-fun SpendWiseExpenseAddScreen(
+fun AddExpenseScreen(
     onBack: () -> Unit,
     onSave: (String, String) -> Unit
 ) {
     SpendWiseBackground {
 
-        ExpenseAddScreenContent(
+        AddExpenseScreenContent(
             onBack = onBack,
             onSave = onSave
         )
@@ -38,7 +38,7 @@ fun SpendWiseExpenseAddScreen(
 }
 
 @Composable
-fun ExpenseAddScreenContent(
+fun AddExpenseScreenContent(
     onBack: () -> Unit,
     onSave: (String, String) -> Unit
 ) {

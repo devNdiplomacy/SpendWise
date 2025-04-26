@@ -1,4 +1,4 @@
-package com.devndiplomacy.spendwise.screens
+package com.devndiplomacy.spendwise.list_expense.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -18,11 +18,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.devndiplomacy.spendwise.commonUi.SpendWiseBackground
+import com.devndiplomacy.spendwise.core.ui.SpendWiseBackground
 import com.devndiplomacy.spendwise.getDataBase
-import com.devndiplomacy.spendwise.screens.models.Expense
+import com.devndiplomacy.spendwise.list_expense.ui.components.Expense
+import com.devndiplomacy.spendwise.splash_screen.ui.spendwiseGreen
 import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 
 @Composable
 fun SpendWiseShowExpenseScreen(

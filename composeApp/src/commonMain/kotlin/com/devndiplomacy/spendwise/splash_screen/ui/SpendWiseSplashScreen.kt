@@ -1,4 +1,4 @@
-package com.devndiplomacy.spendwise.screens
+package com.devndiplomacy.spendwise.splash_screen.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -15,10 +15,12 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.devndiplomacy.spendwise.Screen
+import com.devndiplomacy.spendwise.core.ui.components.Screen
 import com.devndiplomacy.spendwise.db.tables.Category
 import com.devndiplomacy.spendwise.db.tables.Expense
 import com.devndiplomacy.spendwise.getDataBase
+import com.devndiplomacy.spendwise.add_expense.ui.AddExpenseScreen
+import com.devndiplomacy.spendwise.list_expense.ui.SpendWiseShowExpenseScreen
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
 
@@ -66,7 +68,7 @@ fun SpendWiseSplashScreen(modifier: Modifier = Modifier) {
         composable<Screen.SpendWiseAddExpenseScreen> {
 
             val coroutineScope = rememberCoroutineScope()
-            SpendWiseExpenseAddScreen(
+            AddExpenseScreen(
                 onBack = {},
                 onSave = { amount, category->
 

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.devndiplomacy.spendwise.core.SPEND_WISE_DB
 import com.devndiplomacy.spendwise.db.SpendWiseDb
 
 @SuppressLint("StaticFieldLeak")

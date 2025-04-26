@@ -2,6 +2,7 @@ package com.devndiplomacy.spendwise
 
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.devndiplomacy.spendwise.core.SPEND_WISE_DB
 import com.devndiplomacy.spendwise.db.SpendWiseDb
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSApplicationSupportDirectory

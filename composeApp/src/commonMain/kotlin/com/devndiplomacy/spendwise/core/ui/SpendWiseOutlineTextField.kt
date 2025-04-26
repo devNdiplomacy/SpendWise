@@ -1,4 +1,4 @@
-package com.devndiplomacy.spendwise.commonUi
+package com.devndiplomacy.spendwise.core.ui
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
