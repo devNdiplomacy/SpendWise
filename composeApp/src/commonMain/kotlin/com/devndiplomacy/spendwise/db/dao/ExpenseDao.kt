@@ -17,4 +17,5 @@ interface ExpenseDao {
 
      @Delete
      suspend fun deleteExpense(expense: Expense)
+
 }

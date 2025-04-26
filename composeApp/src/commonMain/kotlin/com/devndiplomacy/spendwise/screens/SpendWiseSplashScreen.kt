@@ -16,9 +16,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.devndiplomacy.spendwise.Screen
+import com.devndiplomacy.spendwise.db.tables.Category
 import com.devndiplomacy.spendwise.db.tables.Expense
 import com.devndiplomacy.spendwise.getDataBase
 import kotlinx.coroutines.launch
+import kotlinx.datetime.Clock
+
 
 val spendwiseGreen = Color(0xFF438883)
 
@@ -68,7 +71,22 @@ fun SpendWiseSplashScreen(modifier: Modifier = Modifier) {
                 onSave = { amount, category->
 
                     coroutineScope.launch {
-                        getDataBase().getExpenseDao().insertExpense(Expense(amount = amount.toDouble(), category = category))
+                        val cat = Category(
+                            name = category,
+                            createdAt = Clock.System.now().toEpochMilliseconds(),
+                            updatedAt = Clock.System.now().toEpochMilliseconds()
+                        )
+                        getDataBase().getCategoryDao().insertCategory(cat)
+                        println("Category id is ${getDataBase().getCategoryDao().getAllCategory()}")
+                        val catId = getDataBase().getCategoryDao().getCategoryByName(category).id
+                        println("Category id is $catId")
+                        val exp = Expense(
+                            amount = amount.toDouble(),
+                            categoryId = catId,
+                            createdAt = Clock.System.now().toEpochMilliseconds(),
+                            updateAt = Clock.System.now().toEpochMilliseconds()
+                        )
+                        getDataBase().getExpenseDao().insertExpense(exp)
                         navController.navigate(Screen.SpendWiseShowExpenseScreen)
                     }
                 }

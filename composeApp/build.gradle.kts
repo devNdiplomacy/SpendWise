@@ -56,6 +56,7 @@ kotlin {
             implementation(libs.room.runtime)
             implementation(libs.sqlite)
             implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.kotlinx.datetime)
         }
 
         desktopMain.dependencies {

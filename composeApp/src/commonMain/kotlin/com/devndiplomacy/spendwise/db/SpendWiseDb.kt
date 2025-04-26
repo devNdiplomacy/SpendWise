@@ -4,6 +4,7 @@ import androidx.room.ConstructedBy
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.*
+import com.devndiplomacy.spendwise.db.dao.CategoryDao
 import com.devndiplomacy.spendwise.db.dao.ExpenseDao
 import com.devndiplomacy.spendwise.db.tables.Category
 import com.devndiplomacy.spendwise.db.tables.Expense
@@ -16,6 +17,7 @@ import com.devndiplomacy.spendwise.db.tables.Expense
 abstract class SpendWiseDb: RoomDatabase() {
 
     abstract fun getExpenseDao(): ExpenseDao
+    abstract fun getCategoryDao(): CategoryDao
 }
 
 @Suppress("NO_ACTUAL_FOR_EXPECT")

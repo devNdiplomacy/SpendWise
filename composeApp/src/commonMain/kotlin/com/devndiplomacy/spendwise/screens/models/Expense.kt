@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Expense(
-    val id: Int = 0,
+    val id: Long = 0,
     val amount: Double,
     val category: String
 )

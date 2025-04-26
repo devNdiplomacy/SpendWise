@@ -20,8 +20,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.devndiplomacy.spendwise.commonUi.SpendWiseBackground
 import com.devndiplomacy.spendwise.getDataBase
-import com.devndiplomacy.spendwise.getExpenses
 import com.devndiplomacy.spendwise.screens.models.Expense
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 @Composable
@@ -35,14 +35,25 @@ fun SpendWiseShowExpenseScreen(
 
     // Fetch expenses when the screen is first displayed
     LaunchedEffect(Unit) {
-        coroutineScope.launch {
-            try {
-                expenses = getDataBase().getExpenseDao().getAllExpenses().getExpenses()
-                isLoading = false
-            } catch (e: Exception) {
-                // Handle error
-                isLoading = false
+        try {
+            expenses = getDataBase().getExpenseDao().getAllExpenses().map {  it->
+                val category = coroutineScope.async {
+
+                   return@async getDataBase().getCategoryDao().getCategory(it.categoryId)
+                }
+
+                val c = category.await()
+                Expense(
+                    id = it.id,
+                    amount = it.amount,
+                    category = c.name
+                )
             }
+            println("expenses $expenses")
+            isLoading = false
+        } catch (e: Exception) {
+            // Handle error
+            isLoading = false
         }
     }
 
@@ -86,7 +97,7 @@ fun SpendWiseShowExpenseScreen(
                     }
 
                     // Subtitle with total amount
-                    val totalAmount = expenses.sumOf { it.amount.toDouble() }
+                    val totalAmount = expenses.sumOf { it.amount }
                     Text(
                         text = "Total: $totalAmount",
                         color = Color.White,
