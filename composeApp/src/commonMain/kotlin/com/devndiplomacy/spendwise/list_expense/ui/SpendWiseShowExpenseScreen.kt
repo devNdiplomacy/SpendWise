@@ -57,7 +57,7 @@ fun SpendWiseShowExpenseScreen(
         }
     }
 
-    SpendWiseBackground {
+    SpendWiseBackground(greenPortion = 1.0f) {
         Box(modifier = Modifier.fillMaxSize()) {
             // Show loading indicator while fetching expenses
             if (isLoading) {
